@@ -33,6 +33,7 @@ y_pred = regressor.predict(X_test)
 #### Building the optimal model using Backward Elimination
 import statsmodels.formula.api as sm
 X = np.append(arr = np.ones((50,1)).astype(int), values = X, axis = 1) # adding extra column for b0 constant as the first column, as per the formula
+
 X_opt = X[:,[0,1,2,3,4,5]]  # select all features as optimal to begin with
 regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
 regressor_OLS.summary()  

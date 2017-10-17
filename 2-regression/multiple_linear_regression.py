@@ -11,6 +11,7 @@ y = dataset.iloc[:,4].values
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 labelencoder_X = LabelEncoder()
 X[:,3] = labelencoder_X.fit_transform(X[:,3])
+
 onehoteencoder = OneHotEncoder(categorical_features=[3])  
 X = onehoteencoder.fit_transform(X).toarray()
 
@@ -18,7 +19,7 @@ X = onehoteencoder.fit_transform(X).toarray()
 X = X[:,1:]   # removing first column from the X
 
 #### Splitting the dataset into Training and Test
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection  import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X,y,test_size = 0.2, random_state = 0)
 
 
@@ -42,7 +43,7 @@ regressor_OLS.summary()
 # remove column with highest P value
 X_opt = X[:,[0,1,3,4,5]]
 regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
-regressor_OLS.summary() 
+print(regressor_OLS.summary())
 
 X_opt = X[:,[0,3,4,5]]
 regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()

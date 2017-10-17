@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 38,
+  "id": "e05af473-02dd-44b7-b038-30b8a6546d55",
+  "activities": [
+    {
+      "id": "6b6c81b6-1f02-4c2d-a666-c1a3f779370c",
+      "name": "startups",
+      "blocks": [
+        {
+          "id": "a0f86a0a-eb52-452d-8505-a9bf9a4501bf",
+          "type": "Microsoft.DPrep.ReferenceActivityBlock",
+          "arguments": {
+            "reference": {
+              "referenceType": 1,
+              "referenceContainerPath": "./startups.dsource",
+              "referencedActivityId": "f7f99112-4b22-4598-be80-5d6fd876b83b",
+              "referencedBranchId": null,
+              "referencedStep": null,
+              "anonymousSteps": null
+            }
+          }
+        }
+      ],
+      "inspectors": [
+        {
+          "id": "c4edf8a4-3238-4f83-a75b-3e3e0bab0ccb",
+          "type": "Microsoft.DPrep.DataQualityInspector",
+          "arguments": {},
+          "reference": {
+            "referenceType": 0,
+            "referenceContainerPath": null,
+            "referencedActivityId": "6b6c81b6-1f02-4c2d-a666-c1a3f779370c",
+            "referencedBranchId": null,
+            "referencedStep": {
+              "stepReferenceType": 1,
+              "referencedStepId": null,
+              "fallback": 1
+            },
+            "anonymousSteps": null
+          },
+          "isBackground": true
+        }
+      ]
+    }
+  ],
+  "runConfigurations": []
+}

@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 38,
+  "id": "7d1a6895-78b7-4e0d-abb7-572bc4217650",
+  "activities": [
+    {
+      "id": "b87a5db4-8784-4193-9b96-1fda3c235627",
+      "name": "social_network_ads",
+      "blocks": [
+        {
+          "id": "7cc2baad-6b54-4c07-ae6c-05675f070612",
+          "type": "Microsoft.DPrep.ReferenceActivityBlock",
+          "arguments": {
+            "reference": {
+              "referenceType": 1,
+              "referenceContainerPath": "./social_network_ads.dsource",
+              "referencedActivityId": "411af0d1-593f-4572-a4b1-8d9c24e8ba0d",
+              "referencedBranchId": null,
+              "referencedStep": null,
+              "anonymousSteps": null
+            }
+          }
+        }
+      ],
+      "inspectors": [
+        {
+          "id": "d060916a-45cb-4dcf-99b2-9a232a76fa68",
+          "type": "Microsoft.DPrep.DataQualityInspector",
+          "arguments": {},
+          "reference": {
+            "referenceType": 0,
+            "referenceContainerPath": null,
+            "referencedActivityId": "b87a5db4-8784-4193-9b96-1fda3c235627",
+            "referencedBranchId": null,
+            "referencedStep": {
+              "stepReferenceType": 1,
+              "referencedStepId": null,
+              "fallback": 1
+            },
+            "anonymousSteps": null
+          },
+          "isBackground": true
+        }
+      ]
+    }
+  ],
+  "runConfigurations": []
+}

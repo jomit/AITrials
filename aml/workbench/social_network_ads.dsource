@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 38,
+  "id": "d488c422-60cc-4660-aaf7-2595520a56f4",
+  "activities": [
+    {
+      "id": "411af0d1-593f-4572-a4b1-8d9c24e8ba0d",
+      "name": "social_network_ads",
+      "blocks": [
+        {
+          "id": "c690b550-d424-4108-9185-7d3ddd2c7ec1",
+          "type": "Microsoft.DPrep.DataSourceBlock",
+          "arguments": {
+            "path": {
+              "target": 0,
+              "resourceDetails": [
+                {
+                  "path": "./social_network_ads.csv"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "123fc1e0-1a47-4ee1-a71a-faffea1eff78",
+          "type": "Microsoft.DPrep.ParseDelimitedBlock",
+          "arguments": {
+            "preview": false,
+            "columnHeadersMode": 1,
+            "separator": ",",
+            "fileEncoding": 0,
+            "skipRowsMode": 0,
+            "handleQuotedLineBreaks": false
+          }
+        },
+        {
+          "id": "dcda5b08-cb9c-49d9-bf8b-a66be9e4a346",
+          "type": "Microsoft.DPrep.SetColumnTypesBlock",
+          "arguments": {
+            "columnConversion": [
+              {
+                "columnId": "User ID",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "Purchased",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "Age",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "EstimatedSalary",
+                "typeProperty": 3,
+                "typeArguments": {}
+              }
+            ]
+          }
+        },
+        {
+          "id": "37095172-9436-4f2e-aa04-538172c86d11",
+          "type": "Microsoft.DPrep.SampleBlock",
+          "arguments": {
+            "samples": [
+              {
+                "sampleId": "45bb92b0-7ad8-458c-b6b8-c9702bf5953a",
+                "sampleRevision": "bb137bd1-89ef-4352-add2-b0d705c170d6",
+                "sampleName": "Top 10000",
+                "sampleRunner": {
+                  "id": null,
+                  "type": 0
+                },
+                "remoteGeneratorProperties": {},
+                "sampleStrategy": 0,
+                "topArguments": {
+                  "sampleCount": 10000
+                },
+                "randomNArguments": {
+                  "sampleCount": 10000
+                },
+                "randomPercentArguments": {
+                  "probability": 0.1
+                },
+                "allowAutoGen": true,
+                "isDisabled": false
+              }
+            ],
+            "activeSample": "45bb92b0-7ad8-458c-b6b8-c9702bf5953a"
+          }
+        },
+        {
+          "id": "5ed7c6a9-b1eb-4021-9d31-604ee7d8a2b0",
+          "type": "Microsoft.DPrep.HandlePathColumnBlock",
+          "arguments": {
+            "pathColumnOperation": 0
+          }
+        }
+      ],
+      "inspectors": [
+        {
+          "id": "d2363dfd-30b2-4180-a838-dea3f78540be",
+          "type": "Microsoft.DPrep.DataQualityInspector",
+          "arguments": {},
+          "reference": {
+            "referenceType": 0,
+            "referenceContainerPath": null,
+            "referencedActivityId": "411af0d1-593f-4572-a4b1-8d9c24e8ba0d",
+            "referencedBranchId": null,
+            "referencedStep": {
+              "stepReferenceType": 1,
+              "referencedStepId": null,
+              "fallback": 1
+            },
+            "anonymousSteps": null
+          },
+          "isBackground": true
+        }
+      ]
+    }
+  ],
+  "runConfigurations": []
+}

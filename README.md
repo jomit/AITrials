@@ -18,10 +18,5 @@
 	- Keras : pip install --upgrade keras
 
 
-# Workbench updates
-
-- pip install C:\Users\jovagh\Downloads\scipy-0.19.1-cp35-cp35m-win_amd64.whl
-
-- pip install "https://azuremldownloads.blob.core.windows.net/wheels/latest/azureml.dataprep-0.1.1709.14053-py3-none-any.whl?sv=2016-05-31&si=ro-2017&sr=c&sig=xnUdTm0B%2F%2FfknhTaRInBXyu2QTTt8wA3OsXwGVgU%2BJk%3D" --upgrade
-	
-
+# Documentation
+	- scikit-learn : http://scikit-learn.org/0.18/modules/classes.html

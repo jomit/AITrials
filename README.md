@@ -18,5 +18,4 @@
 	- Keras : pip install --upgrade keras
 
 
-# Documentation
-	- scikit-learn : http://scikit-learn.org/0.18/modules/classes.html
+

@@ -9,7 +9,6 @@ y = dataset.iloc[:, 4].values
 
 #print(X)
 #print(y)
-
 #========================= DATA PREPROCESSING =========================
 
 # 1) Splitting the dataset into the Training set and Test set

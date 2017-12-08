@@ -11,8 +11,15 @@
 
 - To Research on Deep Learning
 	- Theano : pip install --upgrade --no-deps git+git://github.com/Theano/Theano.git
-	- Tensorflow : https://www.tensorflow.org/install/install_windows
-	- (Make sure to use the Anaconda Command Prompt to activate tensorflow)
+	- Tensorflow
+		- https://www.tensorflow.org/install/install_windows
+		- (Make sure to use the Anaconda Command Prompt to activate tensorflow)
+	- CNTK
+		- https://docs.microsoft.com/en-us/cognitive-toolkit/setup-windows-python?tabs=cntkpy22
+		- (Make sure to use the Anaconda Command Prompt to activate cntk
+		- pip3 install https://cntk.ai/PythonWheel/CPU-Only/cntk-2.2-cp36-cp36m-win_amd64.whl
+		
+	
 
 - Built Deep Learning Models
 	- Keras : pip install --upgrade keras

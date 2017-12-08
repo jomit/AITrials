@@ -53,6 +53,7 @@ classifier = Sequential()
 # units = nodes in the output layer
 # units = (number of nodes in input layer + number of nodes in output layer) / 2
 # units = ( 11 + 1 ) / 2
+# activation = "relu" which is rectifier as it is good for hidden layers
 classifier.add(Dense(units = 6, kernel_initializer = "uniform", activation = "relu", input_dim = 11 ))
 
 # Adding the second hidden layer
@@ -79,6 +80,10 @@ classifier.fit(X_train, y_train, batch_size = 10, nb_epoch = 100)
 # Predicting the Test set results
 y_pred = classifier.predict(X_test)
 y_pred = (y_pred > 0.5)  # convert the probablies into '0' or '1' based on a threshold
+
+# evaluate the model
+scores = classifier.evaluate(X, y)
+print("\n%s: %.2f%%" % (classifier.metrics_names[1], scores[1]*100))
 
 # Making the Confusion Matrix
 from sklearn.metrics import confusion_matrix

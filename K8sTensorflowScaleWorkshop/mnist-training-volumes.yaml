@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job # Our training should be a Job since it is supposed to terminate at some point
+metadata:
+  name: mnist-training # Name of our job
+spec:
+  template: # Template of the Pod that is going to be run by the Job
+    metadata:
+      name: mnist-train # Name of the pod
+    spec:
+      containers: # List of containers that should run inside the pod, in our case there is only one.
+      - image: jomit/tf-mnist # The image to run, you can replace by your own.
+        name: tensorflow
+        args: ["--max_steps", "500", "--data_dir","/app/tf_files/input_data", "--log_dir","/app/tf_files/logs"] # Optional arguments to pass to our command. By default the command is defined by ENTRYPOINT in the Dockerfile
+        volumeMounts:
+        - name: azurefile
+          mountPath: /app/tf_files
+      volumes:
+      - name: azurefile
+        azureFile:
+          secretName: azure-secret
+          shareName: tensorflow
+          readOnly: false
+      restartPolicy: OnFailure # restart the pod if it fails

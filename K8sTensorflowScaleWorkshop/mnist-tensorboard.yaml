@@ -1,0 +1,34 @@
+apiVersion: tensorflow.org/v1alpha1
+kind: TfJob
+metadata:
+  name: mnist-tensorboard
+spec:
+  replicaSpecs:
+    - template:
+        spec:
+          volumes:
+            - name: azurefile
+              azureFile:
+                  secretName: azure-secret
+                  shareName: tensorflow
+                  readOnly: false
+          containers:
+            - image: jomit/tf-mnist
+              name: tensorflow
+              volumeMounts:
+                - mountPath: /tmp/tensorflow
+                  subPath: mnist-tensorboard # Again we isolate the logs in a new directory on Azure Files
+                  name: azurefile
+          restartPolicy: OnFailure
+  tensorboard:
+    logDir: /tmp/tensorflow/logs
+    serviceType: LoadBalancer # We request a public IP for our TensorBoard instance
+    volumes:
+      - name: azurefile
+        azureFile:
+            secretName: azure-secret
+            shareName: tensorflow
+    volumeMounts:
+      - mountPath: /tmp/tensorflow/ #This could be any other path. All that maters is that LogDir reflects it.
+        subPath: mnist-tensorboard # This should match the directory our Master is actually writing in
+        name: azurefile

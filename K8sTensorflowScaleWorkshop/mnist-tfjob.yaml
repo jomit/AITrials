@@ -1,0 +1,12 @@
+apiVersion: tensorflow.org/v1alpha1
+kind: TfJob
+metadata:
+  name: mnist-tfjob
+spec:
+  replicaSpecs:
+    - template:
+        spec:
+          containers:
+            - image: jomit/tf-mnist
+              name: tensorflow
+          restartPolicy: OnFailure

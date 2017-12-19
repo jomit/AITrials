@@ -12,7 +12,7 @@ EnvironmentVariables:
   "EXAMPLE_ENV_VAR": "Example Value"
 
 # Framework to execute inside. Allowed values are "Python" and "PySpark".
-Framework: "Python"
+Framework: "PySpark"
 
 # Path to the Conda dependencies file to use for this run. If a project
 # contains multiple programs with different sets of dependencies, it may be
@@ -27,7 +27,7 @@ SparkDependenciesFile: "aml_config/spark_dependencies.yml"
 # Automatically prepare the run environment as part of the run itself.
 # Manual preparation of a compute target can be perfomed with:
 # az ml experiment prepare --run-configuration <run configuration name>
-PrepareEnvironment: true
+PrepareEnvironment: false
 
 # Enable history tracking -- this allows status, logs, metrics, and outputs
 # to be collected by Azure ML Workbench and uploaded to the cloud project.

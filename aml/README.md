@@ -1,10 +1,14 @@
 # Azure Machine Learning end to end Walkthrough
 
+## Concepts
+
 ![AML Concepts](https://raw.githubusercontent.com/jomit/AITrials/master/aml/img/hierarchy.png)
+
+[Azure Machine Learning Concepts](https://docs.microsoft.com/en-us/azure/machine-learning/preview/overview-general-concepts)
 
 ## Prerequisites
 
-#### Local
+### Local
 
 - Install [Azure Machine Learning Workbench](https://docs.microsoft.com/en-us/azure/machine-learning/preview/quickstart-installation#install-azure-machine-learning-workbench-on-windows)
 
@@ -14,7 +18,7 @@
 
 - Install [VS Code Tools for AI](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.vscode-ai#overview)
 
-#### On a Virtual Machine
+### On a Virtual Machine
 
 - Create [Data Science Virtual Machine - Windows 2016](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/microsoft-ads.windows-data-science-vm)  with size `D4S_v3`
 
@@ -28,7 +32,7 @@
 
 ## Experimentation
 
-#### Create Experimentation Account in Azure
+### Create Experimentation Account in Azure
 
 `az group create -n mlgroup -l eastus2`
 
@@ -42,13 +46,13 @@ Run `setpath.bat` to set the path on any command line or open the command line f
 
 `az ml workspace create --name mlworkspace --account mlexperiments --resource-group mlgroup -l eastus2`
 
-#### Create New Project
+### Create New Project
 
 `az ml project create --name startupfunding --workspace mlworkspace --account mlexperiments --resource-group mlgroup --template -l eastus2 --path .`
 
 Open the `startupfunding` folder in Visual Studio Code
 
-#### Create Model
+### Create Model
 
 ### Compare Multiple Models
 

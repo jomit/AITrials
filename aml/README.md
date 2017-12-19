@@ -31,25 +31,27 @@
 
 ### Create Experimentation Account in Azure
 
-`az group create -n mlgroup -l eastus2`
+- `az group create -n mlgroup -l eastus2`
 
-`az storage account create -n mlexpstorejomit -g mlgroup --sku Standard_LRS -l eastus2`
+- `az storage account create -n mlexpstorejomit -g mlgroup --sku Standard_LRS -l eastus2`
 
-`az storage account show -n mlexpstorejomit -g mlgroup --query "id"`
+- `az storage account show -n mlexpstorejomit -g mlgroup --query "id"`
 
-Run `setpath.bat` to set the path on any command line or open the command line from AML Workbench
+- Run `setpath.bat` to set the path on any command line or open the command line from AML Workbench
 
-`az ml account experimentation create --n mlexperiments --resource-group mlgroup -l eastus2 --seats 2 --storage <storage account id>`
+- `az ml account experimentation create --n mlexperiments --resource-group mlgroup -l eastus2 --seats 2 --storage <storage account id>`
 
-`az ml workspace create --name mlworkspace --account mlexperiments --resource-group mlgroup -l eastus2`
+- `az ml workspace create --name mlworkspace --account mlexperiments --resource-group mlgroup -l eastus2`
 
 ### Create New Project
 
-`az ml project create --name startupfunding --workspace mlworkspace --account mlexperiments --resource-group mlgroup --template -l eastus2 --path .`
+- `az ml project create --name startupfunding --workspace mlworkspace --account mlexperiments --resource-group mlgroup --template -l eastus2 --path .`
 
-Open the `startupfunding` folder in Visual Studio Code
+- Open the `startupfunding` folder in Visual Studio Code
 
 ### Create Model
+
+- 
 
 ### Compare Multiple Models
 

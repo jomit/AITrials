@@ -51,25 +51,29 @@
 
 ### Create Model
 
-- 
+- Replace content of `train.py` and `score.py` files from the `startupfunding` folder
 
-### Compare Multiple Models
+- Replace all files in `aml_config` folder with files in `startupfunding\aml_config` folder
 
-- Show "run_logger.log("Accuracy", accuracy)"
+- `az ml experiment submit -c local train.py`
 
-- setpath.bat
+- Uncomment `addmodelcomparison` method call on `line 143` in `train.py` and submit the experiment using above command again
 
-- az ml experiment submit -c local funding.py
+- Open the project in Azure Machine Learning Workbench and see the accuracy graph under `Runs\All Runs`
 
-- See the graph in "All run" for Accuracy
+- `az ml history list -o table`
 
-- az ml history list -o table
+### Save the Model
 
-## Serialize the Model
+- Uncomment `savemodel` method call on `line 146` in `train.py`
 
-- See "pickle.dump" section
+- `az ml experiment submit -c local train.py`
 
-- Show the models saved in Azure Blob Storage
+- Note the `RunId`
+
+- Open the storage account created above `mlexpstorejomit` in Storage Explorer or in Portal
+
+- Browse to `azureml\ExperimentRun\<RunId>\outputs` folder, you should see `startupfunding.pkl` file 
 
 
 ## Train Models on Remote Environments

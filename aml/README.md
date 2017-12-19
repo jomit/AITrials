@@ -1,9 +1,6 @@
 # Azure Machine Learning end to end Walkthrough
 
-## Concepts
-
 ![AML Concepts](https://raw.githubusercontent.com/jomit/AITrials/master/aml/img/hierarchy.png)
-
 [Azure Machine Learning Concepts](https://docs.microsoft.com/en-us/azure/machine-learning/preview/overview-general-concepts)
 
 ## Prerequisites

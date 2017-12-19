@@ -1,6 +1,6 @@
 # Azure Machine Learning end to end Walkthrough
 
-![AML Concepts](https://raw.githubusercontent.com/jomit/AITrials/blob/master/img/hierarchy.png)
+![AML Concepts](https://raw.githubusercontent.com/jomit/AITrials/blob/master/aml/img/hierarchy.png)
 
 ## Prerequisites
 

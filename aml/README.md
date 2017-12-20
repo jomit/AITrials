@@ -55,9 +55,11 @@
 
 - Replace all files in `aml_config` folder with files in `startupfunding\aml_config` folder
 
+- `cd startupfunding`
+
 - `az ml experiment submit -c local train.py`
 
-- Uncomment `addmodelcomparison` method call on `line 143` in `train.py` and submit the experiment using above command again
+- Uncomment `addmodelcomparison` method call on `line 140` in `train.py` and submit the experiment using above command again
 
 - Open the project in Azure Machine Learning Workbench and see the accuracy graph under `Runs\All Runs`
 
@@ -65,7 +67,7 @@
 
 ### Save the Model
 
-- Uncomment `savemodel` method call on `line 146` in `train.py`
+- Uncomment `savemodel` method call on `line 143` in `train.py`
 
 - `az ml experiment submit -c local train.py`
 
@@ -118,77 +120,84 @@
 
 - TODO
 
-# Deploy Model as a Web service
+## Model Management
 
-## Model Selection
+![Model Management Workflow](https://raw.githubusercontent.com/jomit/AITrials/master/aml/img/modelmanagementworkflow.png)
 
-- Go to job runs and "Promote" the output model in Workbench UI or
- 
-- az ml history list -o table
+### Select the Model to publish
 
-- az ml history promote --run "<runid>" --artifact-path outputs/startupfunding.pkl --name startupfunding.pkl 
+- `az ml history list -o table`
 
-- Verify the link by downloading the files
+- Note the `RunId` from the table with best `Accuracy`
 
-- az ml asset download --link-file assets/startupfunding.pkl.link -d outputs
+- `az ml history info --run "<run id>" --artifact driver_log`
 
-## Create the Swagger schema for the service
+- `az ml history promote --run "<runid>" --artifact-path outputs/startupfunding.pkl --name startupfunding.pkl`
 
-- See "Create schema.json" section
+- See the `assets/startupfunding.pkl.link`
 
-- Download the "schema.json" file from Blob Storage (ExperimentationRun/<RunId>/outputs)
+- (Optional) You can also do this from AML Workbench Job Runs UI 
 
-## Create and Test scoring service code
+### Create the Swagger schema for web service
 
-- See "sore.py"
+- Uncomment `createwebserviceschema` method call on `line 146` in `train.py`
 
-- az ml experiment submit -c local score.py
+- `az ml experiment submit -c local train.py`
 
-## Setup k8s cluster to deploy web service
+- Note the `RunId`
 
-- az ml env setup --cluster -l westcentralus -n acsbootcamp -g AIBootCamp
+- Open the storage account created above `mlexpstorejomit` in Storage Explorer or in Portal
 
-- az ml env show -n acsbootcamp -g AIBootCamp
+- Browse to `azureml\ExperimentRun\<RunId>\outputs` folder, you should see `schema.json` file, download the file
 
-- (Wait until provisiong is Succeeded)
+### Test web service code locally
 
-- az ml env set -n acsbootcamp -g AIBootCamp
+- `az ml experiment submit -c local score.py`
 
-- (Browse to http://localhost:<port>/ui) to see the k8s cluster dashboard
+### Create kubernetes cluster to deploy web service
 
-## Deploy the web service
+- `az ml env setup --cluster -l eastus2 -n mlcluster -g mlgroup`
 
-Set the Model Management Account
+- `az ml env show -n mlcluster -g mlgroup`
 
-- az ml account modelmanagement set -n aibootcampModelMgmt -g AIBootCamp
+- Wait until `Provisioning State` is `Succeeded`
 
-Download the latest model file
+- `az ml env set -n mlcluster -g mlgroup`
 
-- az ml asset download --link-file assets/startupfunding.pkl.link -d .
+- Browse to `http://localhost:<port>/ui` to see the kubernetes cluster dashboard
 
-- az ml service create realtime -n funding --model-file outputs/startupfunding.pkl -f score.py -r python -s schema.json
+### Create Model Management Account
 
-- az ml service show realtime -n funding -v
+- `az ml account modelmanagement create -n mlmodelmgmt -g mlgroup -l eastus2`
 
-- az ml service usage realtime -i funding.acsbootcamp-fc346666.westcentralus
+- `az ml account modelmanagement set -n mlmodelmgmt -g mlgroup`
 
-Get the Bearer token from the Azure Model Management Portal
+### Create and deploy the web service
 
-Use Postman to submit a request and test the web service
+- `az ml service create realtime -n fundingservice --model-file startupfunding.pkl -f score.py -r python -s schema.json`
 
-https://editor.swagger.io
+- `az ml service show realtime -n fundingservice -v`
+
+- `az ml service show realtime -n fundingservice -v --query [].Id`
+
+- `az ml service keys realtime -i <Id>`  (Copy Primary Key)
+
+- `az ml service usage realtime -i <Id>`  (Copy Scoring Url)
+
+- (Optional) You can also view service keys and scoring url details on `Model Management` UI in Azure
+
+### Test the Web Service
+
+- `az ml service run realtime -i <Id> -d "{\"inputData\" : [[0,1,75000,10000,15000]]}"`
+
+- (Optional) You can also use tools like Postman or Fiddler and submit a POST request to verify
+
+### View Web Service Logs
+
+- `az ml service logs realtime -i <Id>`
 
 
-To view logs or delete the service
+## Additional Resources
 
-- az ml service logs realtime -i funding.acsbootcamp-fc346666.westcentralus
-
-- az ml service delete realtime -i funding.acsbootcamp-fc346666.westcentralus
-
-
-# Additional Resources
-
-- scikit-learn Documentation
-    - http://scikit-learn.org/0.18/modules/classes.html
-- Configure password-less sudoers access to run aml workbench on remote hosts
-    - https://docs.microsoft.com/en-us/azure/machine-learning/preview/known-issues-and-troubleshooting-guide#remove-vm-execution-error-no-tty-present
+- scikit-learn [Documentation](http://scikit-learn.org/0.18/modules/classes.html)
+- Configure password-less sudoers access to run aml workbench on remote hosts ([link](https://docs.microsoft.com/en-us/azure/machine-learning/preview/known-issues-and-troubleshooting-guide#remove-vm-execution-error-no-tty-present))

@@ -78,7 +78,7 @@ def savemodel(model):
     pickle.dump(model, f)
     f.close()
 
-def run(input_df):
+def run(inputData):
     import json
         
     prediction = regressor.predict(input_df)
@@ -87,14 +87,11 @@ def run(input_df):
     return json.dumps(str(prediction))
 
 def createwebserviceschema():
-
-    #========================= Create schema.json  =========================
-    
     from azureml.api.schema.dataTypes import DataTypes
     from azureml.api.schema.sampleDefinition import SampleDefinition
     from azureml.api.realtime.services import generate_schema
 
-    inputs = {"input_df": SampleDefinition(DataTypes.NUMPY, X_test)}
+    inputs = {"inputData": SampleDefinition(DataTypes.NUMPY, X_test)}
     print(generate_schema(run_func=run, inputs=inputs, filepath="./outputs/schema.json"))
 
 def modeloptimization():
@@ -143,8 +140,10 @@ if __name__ == '__main__':
     addmodelcomparison(X_test, y_test, model)
 
     # Save the model in Azure Blob Storage
-    savemodel(model)
-    
+    #savemodel(model)
+
+    # Create Swagger schema for web service
+    #createwebserviceschema()
     
     # (Optional) Optimizing the model
     #modeloptimization()

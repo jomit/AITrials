@@ -55,7 +55,7 @@
 
 - Replace all files in `aml_config` folder with files in `startupfunding\aml_config` folder
 
-- Upload the `startupfunding\startups.csv` file an Azure Storage Account
+- Upload the `startupfunding\startups.csv` file in Azure Blob Storage
 
 - Update the blob account details in `train.py` under `loaddata` method
 

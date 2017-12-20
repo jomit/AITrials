@@ -1,0 +1,41 @@
+{
+    "input": {
+        "inputData": {
+            "type": 1,
+            "swagger": {
+                "type": "array",
+                "example": [
+                    [
+                        1.0,
+                        0.0,
+                        66051.52,
+                        182645.56,
+                        118148.2
+                    ],
+                    [
+                        0.0,
+                        0.0,
+                        100671.96,
+                        91790.61,
+                        249744.55
+                    ],
+                    [
+                        1.0,
+                        0.0,
+                        101913.08,
+                        110594.11,
+                        229160.95
+                    ]
+                ],
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "type": "number",
+                        "format": "double"
+                    }
+                }
+            },
+            "internal": "gANjYXp1cmVtbC5hcGkuc2NoZW1hLm51bXB5VXRpbApOdW1weVNjaGVtYQpxACmBcQF9cQIoWAUAAABzaGFwZXEDSwpLBYZxBFgJAAAAZGF0YV90eXBlcQVjbnVtcHkKZHR5cGUKcQZYAgAAAGY4cQdLAEsBh3EIUnEJKEsDWAEAAAA8cQpOTk5K/////0r/////SwB0cQtidWIu"
+        }
+    }
+}

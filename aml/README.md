@@ -78,26 +78,45 @@
 
 ## Train Models on Remote Environments
 
-## Create docker image for 
+### Create and Test docker image locally
 
-- az ml experiment prepare -c docker
+- `docker images`  (Make sure docker is running)
 
-- az ml experiment submit -c docker funding.py
+- `az ml experiment prepare -c docker`  (this would take some time..)
 
-- Change "Framework = Python" and "PrepareEnvironment = true" in "docker.runconfig"
+- `az ml experiment submit -c docker train.py`
 
-- az ml experiment submit -c docker funding.py
+### Create new Ubuntu Data Science Virtual Machine
 
-## Setup remove environments
+- `az group create -n mlvmgroup -l eastus2`
 
-- Create new Linux DSVM
+- `az group deployment create -g mlvmgroup --template-uri https://raw.githubusercontent.com/Azure/DataScienceVM/master/Scripts/CreateDSVM/Ubuntu/azuredeploy.json --parameters remotevm-cpu.json`
 
-- az ml computetarget attach remotedocker --name "azuredsvm" --address "<IP Address>" --username "<username>" --password "<password>"
+- `az vm show -g mlvmgroup -n mltrainingvm -d --query "publicIps"`
 
-- az ml experiment prepare -c azuredsvm
+- `az vm show -g mlvmgroup -n mltrainingvm -d --query "fqdns"`
 
-- az ml experiment submit -c azuredsvm funding.py
+### Deploy and Run docker image on Ubuntu DSVM
 
+- `az ml computetarget attach remotedocker --name remotedsvm --address "<IP Address or FQDN>" --username "jomit" --password "<password>"`
+
+- See 2 new files `remotedsvm.computer` and `remotedsvm.runconfig` created under `aml_config`
+
+- Update the `Framework=Python` in `remotedsvm.runconfig`
+
+- `az ml experiment prepare -c remotedsvm`
+
+- SSH into the DSVM and run `sudo docker images` to verify that our docker images have been deployed
+
+- `az ml experiment submit -c remotedsvm train.py`
+
+### Training Models on Kubernetes Cluster with GPU's
+
+- See instructions [here](https://github.com/jomit/ACSTrials/tree/master/Kubernetes/GPU-Cluster)
+
+### Training Models on Azure Batch AI
+
+- TODO
 
 # Deploy Model as a Web service
 

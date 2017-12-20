@@ -73,7 +73,7 @@ def savemodel(model):
     os.makedirs('./outputs', exist_ok=True)
 
     # serialize the model
-    print ("Export the model to startupfunding.pkl")
+    print ("Saved the model => startupfunding.pkl")
     f = open('./outputs/startupfunding.pkl', 'wb')
     pickle.dump(model, f)
     f.close()

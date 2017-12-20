@@ -1,4 +1,4 @@
-# Train Tensorflow Models at Scale with Kubernetes on Azure (workshop [repo](https://github.com/wbuchwalter/tensorflow-k8s-azure))
+# Train Tensorflow Models at Scale with Kubernetes on Azure
 
 ## Create docker image and push it to docker hub
 
@@ -113,6 +113,11 @@
 - `kubectl get services`
 
 - Browse to the EXTERNAL-IP of the tensorboard service.
+
+
+# Additional Resources
+
+- Workshop [repo](https://github.com/wbuchwalter/tensorflow-k8s-azure))
 
 
 

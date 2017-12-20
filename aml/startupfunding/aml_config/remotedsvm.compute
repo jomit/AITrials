@@ -1,0 +1,7 @@
+address: 13.68.77.42
+baseDockerImage: microsoft/mmlspark:plus-0.9.9
+nativeSharedDirectory: ~/.azureml/share/
+password: AzureMlSecret=remotedsvm#jomit#e734c766bd1a419ebb7cd60c0d7127ab
+sharedVolumes: true
+type: remotedocker
+username: jomit

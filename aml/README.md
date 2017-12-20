@@ -199,7 +199,19 @@
 
 ## Collecting data from Web Service for Retraining 
 
-- 
+- Copy `startupfunding\scoreandcollect.py` file to your project folder
+
+- `pip install azureml.datacollector`
+
+- `az ml service create realtime -n fundingservicev2 --model-file startupfunding.pkl -f scoreandcollect.py -r python -s schema.json --collect-model-data true`
+
+- `az ml service run realtime -i <Id> -d "{\"inputData\" : [[0,1,75000,10000,15000]]}"`
+
+- Run the above command few times with different values
+
+- `az ml env show -v --query storage_account`  (Get the model storage account)
+
+- You should see the data in `inputs` and `prediction` folders under `/modeldata/<subscription_id>/<resource_group_name>/<model_management_account_name>/<webservice_name>/<model_id>-<model_name>-<model_version>`
 
 
 ## Additional Resources

@@ -5,7 +5,7 @@
 
 ## Prerequisites
 
-### Local
+##### Local
 
 - Install [Azure Machine Learning Workbench](https://docs.microsoft.com/en-us/azure/machine-learning/preview/quickstart-installation#install-azure-machine-learning-workbench-on-windows)
 
@@ -15,7 +15,7 @@
 
 - Install [VS Code Tools for AI](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.vscode-ai#overview)
 
-### On a Virtual Machine
+##### On a Virtual Machine
 
 - Create [Data Science Virtual Machine - Windows 2016](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/microsoft-ads.windows-data-science-vm)  with size `D4S_v3`
 
@@ -29,7 +29,7 @@
 
 ## Experimentation
 
-### Create Experimentation Account in Azure
+#### Create Experimentation Account in Azure
 
 - `az group create -n mlgroup -l eastus2`
 
@@ -43,13 +43,13 @@
 
 - `az ml workspace create --name mlworkspace --account mlexperiments --resource-group mlgroup -l eastus2`
 
-### Create New Project
+#### Create New Project
 
 - `az ml project create --name startupfunding --workspace mlworkspace --account mlexperiments --resource-group mlgroup --template -l eastus2 --path .`
 
 - Open the `startupfunding` folder in Visual Studio Code
 
-### Create Model
+#### Create Model
 
 - Replace content of `train.py` and `score.py` files from the `startupfunding` folder
 
@@ -65,7 +65,7 @@
 
 - `az ml history list -o table`
 
-### Save the Model
+#### Save the Model
 
 - Uncomment `savemodel` method call on `line 143` in `train.py`
 
@@ -80,7 +80,7 @@
 
 ## Train Models on Remote Environments
 
-### Create and Test docker image locally
+#### Create and Test docker image locally
 
 - `docker images`  (Make sure docker is running)
 
@@ -88,7 +88,7 @@
 
 - `az ml experiment submit -c docker train.py`
 
-### Create new Ubuntu Data Science Virtual Machine
+#### Create new Ubuntu Data Science Virtual Machine
 
 - `az group create -n mlvmgroup -l eastus2`
 
@@ -98,7 +98,7 @@
 
 - `az vm show -g mlvmgroup -n mltrainingvm -d --query "fqdns"`
 
-### Deploy and Run docker image on Ubuntu DSVM
+#### Deploy and Run docker image on Ubuntu DSVM
 
 - `az ml computetarget attach remotedocker --name remotedsvm --address "<IP Address or FQDN>" --username "jomit" --password "<password>"`
 
@@ -112,11 +112,11 @@
 
 - `az ml experiment submit -c remotedsvm train.py`
 
-### Training Models on Kubernetes Cluster with GPU's
+#### Training Models on Kubernetes Cluster with GPU's
 
 - See instructions [here](https://github.com/jomit/ACSTrials/tree/master/Kubernetes/GPU-Cluster)
 
-### Training Models on Azure Batch AI
+#### Training Models on Azure Batch AI
 
 - TODO
 
@@ -124,7 +124,7 @@
 
 ![Model Management Workflow](https://raw.githubusercontent.com/jomit/AITrials/master/aml/img/modelmanagementworkflow.png)
 
-### Select the Model to publish
+#### Select the Model to publish
 
 - `az ml history list -o table`
 
@@ -138,7 +138,7 @@
 
 - (Optional) You can also do this from AML Workbench Job Runs UI 
 
-### Create the Swagger schema for web service
+#### Create the Swagger schema for web service
 
 - Uncomment `createwebserviceschema` method call on `line 146` in `train.py`
 
@@ -150,11 +150,11 @@
 
 - Browse to `azureml\ExperimentRun\<RunId>\outputs` folder, you should see `schema.json` file, download the file
 
-### Test web service code locally
+#### Test web service code locally
 
 - `az ml experiment submit -c local score.py`
 
-### Create kubernetes cluster to deploy web service
+#### Create kubernetes cluster to deploy web service
 
 - `az ml env setup --cluster -l eastus2 -n mlcluster -g mlgroup`
 
@@ -166,13 +166,13 @@
 
 - Browse to `http://localhost:<port>/ui` to see the kubernetes cluster dashboard
 
-### Create Model Management Account
+#### Create Model Management Account
 
 - `az ml account modelmanagement create -n mlmodelmgmt -g mlgroup -l eastus2`
 
 - `az ml account modelmanagement set -n mlmodelmgmt -g mlgroup`
 
-### Create and deploy the web service
+#### Create and deploy the web service
 
 - `az ml service create realtime -n fundingservice --model-file startupfunding.pkl -f score.py -r python -s schema.json`
 
@@ -186,15 +186,20 @@
 
 - (Optional) You can also view service keys and scoring url details on `Model Management` UI in Azure
 
-### Test the Web Service
+#### Test the Web Service
 
 - `az ml service run realtime -i <Id> -d "{\"inputData\" : [[0,1,75000,10000,15000]]}"`
 
 - (Optional) You can also use tools like Postman or Fiddler and submit a POST request to verify
 
-### View Web Service Logs
+#### View Web Service Logs
 
 - `az ml service logs realtime -i <Id>`
+
+
+## Collecting data from Web Service for Retraining 
+
+- 
 
 
 ## Additional Resources

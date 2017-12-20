@@ -5,9 +5,9 @@ import pickle
 import sys, os
 
 def loaddata():
-    ACCOUNT_NAME = "mlgputraining"
-    ACCOUNT_KEY = "GE+U8dqKF/KxRJBSpa4WTEDSe0YUlZRtbqJEwmWk2bi5vZrFivjvxWtfILlvSkbzKyQXzm8Mp8N9+ttLphdz9Q=="
-    CONTAINER_NAME = "datasets"
+    ACCOUNT_NAME = "<account name>"
+    ACCOUNT_KEY = "<acccount key>"
+    CONTAINER_NAME = "<container name>"
 
     blobService = BlockBlobService(account_name=ACCOUNT_NAME, account_key=ACCOUNT_KEY)
     blobService.get_blob_to_path(CONTAINER_NAME, 'startups.csv', 'startups.csv')

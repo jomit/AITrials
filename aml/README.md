@@ -55,6 +55,10 @@
 
 - Replace all files in `aml_config` folder with files in `startupfunding\aml_config` folder
 
+- Upload the `startupfunding\startups.csv` file an Azure Storage Account
+
+- Update the blob account details in `train.py` under `loaddata` method
+
 - `cd startupfunding`
 
 - `az ml experiment submit -c local train.py`

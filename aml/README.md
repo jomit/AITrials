@@ -217,6 +217,7 @@
 
 - You should see the data in `inputs` and `prediction` folders under `/modeldata/<subscription_id>/<resource_group_name>/<model_management_account_name>/<webservice_name>/<model_id>-<model_name>-<model_version>`
 
+![Kubernetes Dashboard](https://raw.githubusercontent.com/jomit/AITrials/master/aml/img/k8sdashboard.png)
 
 ## Additional Resources
 

@@ -140,6 +140,8 @@
 
 - See the `assets/startupfunding.pkl.link`
 
+- `az ml asset download --link-file assets\startupfunding.pkl.link -d .`
+
 - (Optional) You can also do this from AML Workbench Job Runs UI 
 
 #### Create the Swagger schema for web service

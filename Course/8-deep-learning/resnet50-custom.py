@@ -79,7 +79,7 @@ X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_
 imageInput = Input(shape=(224, 224, 3))
 
 # get the resnet50 model and weights
-model = ResNet50(input_tensor=imageInput, include_top=False)
+model = ResNet50(input_tensor=imageInput, include_top=False, weights='imagenet')
 model.summary()
 
 lastLayer = model.output
@@ -116,14 +116,5 @@ print('Training time: %s' % (startTime - time.time()))
 
 (loss, accuracy) = customModel.evaluate(X_test, y_test, batch_size=10, verbose=1)
 
-print("[INFO] loss={:.4f}, accuracy: {:.4f}%".format(loss,accuracy * 100))
-
-
-
-
-
-
-
-
-
-
+print("EVALUATION RESULT\n")
+print("LOSS => {:.4f}, ACCURACY => {:.4f}%".format(loss,accuracy * 100))

@@ -1,16 +1,25 @@
 # Transfer Learning using ResNet50
 
-## Open Workbench CLI and install following packages before running the models:
+## Run Experiment Locally
 
-- `pip install tensorflow`
+#### Open Workbench CLI and install following packages:
+
+- `pip install tensorflow` or `pip install tensorflow-gpu` (see instructions below to setup GPU on Windows 10)
 - `pip install keras`
 - `pip install h5py`
 - `pip install pillow`
 
-## Run the experiment
-
+#### Run the experiment
 - `az ml experiment submit -c local resnet50-custom.py`
 
+
+## Run Experiment on a GPU VM
+
+- `TODO`
+
+## Run Experiment at scale on a GPU Cluster
+
+- `TODO`
 
 # Additional Resources
 

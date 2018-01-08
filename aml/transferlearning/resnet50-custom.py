@@ -114,6 +114,17 @@ def createCustomModel(model, output):
 
 	return customModel
 
+def savemodel(model):
+
+    # create the outputs folder
+    os.makedirs('./outputs', exist_ok=True)
+
+    # serialize the model
+    print ("Saved the model => startupfunding.pkl")
+    f = open('./outputs/startupfunding.pkl', 'wb')
+    pickle.dump(model, f)
+    f.close()
+
 if __name__ == '__main__':
 	categories = 2  # baseball bat & cricket bat
 
@@ -137,7 +148,7 @@ if __name__ == '__main__':
 
 	# Train custom model
 	#startTime = time.time()
-	iterations = 2  # changes this to 2 or 5 for quickly testing the code
+	iterations = 50  # changes this to 2 or 5 for quickly testing the code or while using CPU
 	hist = customModel.fit(X_train, y_train, batch_size=10, epochs=iterations, validation_data=(X_test, y_test))
 	#print('Training time: %s' % (startTime - time.time()))
 

@@ -80,7 +80,7 @@ accuracy = classifier.score(X_test, y_test)
 run_logger.log("Accuracy", accuracy)
 #print ("Accuracy is {}".format(accuracy))
 
-
+'''
 #========================= VISUALISING THE RESULTS =========================
 import numpy as np
 import matplotlib.pyplot as plt
@@ -121,3 +121,5 @@ plt.xlabel('Age')
 plt.ylabel('Estimated Salary')
 plt.legend()
 plt.show()
+
+'''

@@ -16,7 +16,7 @@ from sklearn.model_selection import train_test_split
 def loadImages():
 
 	# get current working directory path
-	folder = 'resnet-dataset'  # bats dataset
+	folder = 'data'  # bats dataset
 
 	dataroot = os.getcwd() + '/' + folder
 	directoryList = os.listdir(dataroot)

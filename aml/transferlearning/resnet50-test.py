@@ -23,7 +23,7 @@ model.summary()
 model.layers[-1].get_config()
 
 # load the image
-img_path = 'data\dog.jpg'
+img_path = 'test-data\dog.jpg'
 img = image.load_img(img_path, target_size=(224, 224))
 
 # Preprocess the input

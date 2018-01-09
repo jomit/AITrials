@@ -1,0 +1,7 @@
+address: mltrainingvm.eastus2.cloudapp.azure.com
+baseDockerImage: microsoft/mmlspark:plus-0.9.9
+nativeSharedDirectory: ~/.azureml/share/
+password: AzureMlSecret=trainingvm#jomit#b45ef0f9a27844308ef72f02028c07a5
+sharedVolumes: true
+type: remotedocker
+username: jomit

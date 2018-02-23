@@ -1,0 +1,42 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "count": {
+            "value": 1
+        },
+        "location": {
+            "value": "westus"
+        },
+        "virtualMachineName": {
+            "value": "dsvm-vm-"
+        },
+        "virtualMachineSize": {
+            "value": "Standard_D4s_v3"
+        },
+        "adminUsername": {
+            "value": "hacker"
+        },
+        "virtualNetworkName": {
+            "value": "MLVNet"
+        },
+        "networkInterfaceName": {
+            "value": "dsvm-nic-"
+        },
+        "adminPassword": {
+            "value": "hackfest@2018"
+        },
+        "subnetName": {
+            "value": "default"
+        },
+        "publicIpAddressName": {
+            "value": "dsvm-ip-"
+        },
+        "publicIpAddressType": {
+            "value": "Dynamic"
+        },
+        "publicIpAddressSku": {
+            "value": "Basic"
+        }
+    }
+}

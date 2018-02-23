@@ -1,0 +1,151 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "count": {
+            "type": "int"
+        },
+        "location": {
+            "type": "string"
+        },
+        "virtualMachineName": {
+            "type": "string"
+        },
+        "virtualMachineSize": {
+            "type": "string"
+        },
+        "adminUsername": {
+            "type": "string"
+        },
+        "virtualNetworkName": {
+            "type": "string"
+        },
+        "networkInterfaceName": {
+            "type": "string"
+        },
+        "adminPassword": {
+            "type": "securestring"
+        },
+        "subnetName": {
+            "type": "string"
+        },
+        "publicIpAddressName": {
+            "type": "string"
+        },
+        "publicIpAddressType": {
+            "type": "string"
+        },
+        "publicIpAddressSku": {
+            "type": "string"
+        }
+    },
+    "variables": {
+        "vnetId": "[resourceId('MachineLearningHackfest','Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
+        "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]"
+    },
+    "resources": [
+        {
+            "name" : "[concat(parameters('virtualMachineName'), copyIndex())]",
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2016-04-30-preview",
+            "location": "[parameters('location')]",
+            "copy": {
+                "name": "vmcopy",
+                "count": "[parameters('count')]"
+            },
+            "dependsOn": [
+                "[concat('Microsoft.Network/networkInterfaces/', parameters('networkInterfaceName'), copyIndex())]"
+            ],
+            "properties": {
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachineName')]",
+                    "adminUsername": "[parameters('adminUsername')]",
+                    "adminPassword": "[parameters('adminPassword')]",
+                    "windowsConfiguration": {
+                        "provisionVmAgent": "true"
+                    }
+                },
+                "hardwareProfile": {
+                    "vmSize": "[parameters('virtualMachineSize')]"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "microsoft-ads",
+                        "offer": "windows-data-science-vm",
+                        "sku": "windows2016",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "createOption": "fromImage",
+                        "managedDisk": {
+                            "storageAccountType": "Premium_LRS"
+                        }
+                    },
+                    "dataDisks": []
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(parameters('networkInterfaceName'), copyIndex() ))]"
+                        }
+                    ]
+                }
+            },
+            "plan": {
+                "name": "windows2016",
+                "publisher": "microsoft-ads",
+                "product": "windows-data-science-vm"
+            }
+        },
+        {
+            "name": "[concat(parameters('networkInterfaceName'), copyIndex())]",
+            "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2016-09-01",
+            "location": "[parameters('location')]",
+            "copy": {
+                "name": "niccopy",
+                "count": "[parameters('count')]"
+            },
+            "dependsOn": [
+                "[concat('Microsoft.Network/publicIpAddresses/', parameters('publicIpAddressName'), copyIndex())]"
+            ],
+            "properties": {
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "properties": {
+                            "subnet": {
+                                "id": "[variables('subnetRef')]"
+                            },
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIpAddress": {
+                                "id": "[resourceId('MachineLearningHackfest','Microsoft.Network/publicIpAddresses', concat(parameters('publicIpAddressName'),copyIndex()) )]"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "[concat(parameters('publicIpAddressName'), copyIndex())]",
+            "type": "Microsoft.Network/publicIpAddresses",
+            "apiVersion": "2017-08-01",
+            "location": "[parameters('location')]",
+            "copy": {
+                "name": "pubicipcopy",
+                "count": "[parameters('count')]"
+            },
+            "properties": {
+                "publicIpAllocationMethod": "[parameters('publicIpAddressType')]",
+                "dnsSettings": {
+                    "domainNameLabel": "[concat(parameters('virtualMachineName'), copyIndex())]"
+                  }          
+            },
+            "sku": {
+                "name": "[parameters('publicIpAddressSku')]"
+            }
+        }
+    ],
+    "outputs": {
+    }
+}

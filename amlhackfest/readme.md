@@ -22,3 +22,5 @@
 - `az storage account show -n mlexpstore0 -g MachineLearningHackfest --query "id"`
 
 - `az ml account experimentation create --n mlexperiment0 -g MachineLearningHackfest -l westcentralus --seats 2 --storage <storage account id>`
+
+## Create AML Environment for model deployment

@@ -1,0 +1,32 @@
+{
+    "input": {
+        "inputData": {
+            "type": 1,
+            "swagger": {
+                "items": {
+                    "items": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "type": "array"
+                },
+                "example": [
+                    [
+                        -0.8048021150645557,
+                        0.5049639260777018
+                    ],
+                    [
+                        -0.012544085468602443,
+                        -0.5677824049199036
+                    ],
+                    [
+                        -0.3096408465670849,
+                        0.15704619710550544
+                    ]
+                ],
+                "type": "array"
+            },
+            "internal": "gANjYXp1cmVtbC5hcGkuc2NoZW1hLm51bXB5VXRpbApOdW1weVNjaGVtYQpxACmBcQF9cQIoWAUAAABzaGFwZXEDS2RLAoZxBFgJAAAAZGF0YV90eXBlcQVjbnVtcHkKZHR5cGUKcQZYAgAAAGY4cQdLAEsBh3EIUnEJKEsDWAEAAAA8cQpOTk5K/////0r/////SwB0cQtidWIu"
+        }
+    }
+}

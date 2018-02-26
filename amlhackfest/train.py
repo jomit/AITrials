@@ -1,14 +1,37 @@
-#========================= LOAD DATASET =========================
+#========================= LOAD DATASET USING DATAPREP PACKAGE =========================
 from azureml.dataprep.package import run
 
 dataset = run('social-ads.dprep', dataflow_idx=0, spark=False)
 #print(dataset)
 
-X = dataset.iloc[:, [0, 1]].values  # Just use salary column [1] first to show accurancy improvement
-y = dataset.iloc[:, 3].values
+X = dataset.iloc[:, [2,3]].values  # Just use salary column [1] first to show accuracy improvement
+y = dataset.iloc[:, 4].values
 
-#print(X)
-#print(y)
+print(X)
+print(y)
+
+'''
+#========================= LOAD DATASET USING BLOB STORAGE =========================
+from azure.storage.blob import BlockBlobService
+import pandas as pd
+
+ACCOUNT_NAME = "mlgputraining" #"<account name>"
+ACCOUNT_KEY = "fDP85xqAP9aO/cPgl53ROhe5u3rpMhMI60E+/FDP6sRNWfCm2vAxjRtyApX6/QtOGmvqJtFaw+QMOpp610fjVA==" #"<acccount key>"
+CONTAINER_NAME = "datasets" # "<container name>"
+
+blobService = BlockBlobService(account_name=ACCOUNT_NAME, account_key=ACCOUNT_KEY)
+blobService.get_blob_to_path(CONTAINER_NAME, 'social_network_ads.csv', 'social_network_ads.csv')
+
+dataset = pd.read_csv('social_network_ads.csv')
+print(dataset)
+
+X = dataset.iloc[:, [2, 3]].values  # Just use salary column [1] first to show accurancy improvement
+y = dataset.iloc[:, 4].values
+
+print(X)
+print(y)
+'''
+
 
 #========================= DATA PREPROCESSING =========================
 
@@ -79,6 +102,36 @@ run_logger = get_azureml_logger()
 accuracy = classifier.score(X_test, y_test)
 run_logger.log("Accuracy", accuracy)
 #print ("Accuracy is {}".format(accuracy))
+
+
+#========================= SAVE MODEL =========================
+import pickle
+import sys, os
+
+ # create the outputs folder
+os.makedirs('./outputs', exist_ok=True)
+
+# serialize the model
+print ("Saved the model => socialads.pkl")
+f = open('./outputs/socialads.pkl', 'wb')
+pickle.dump(classifier, f)
+f.close()
+
+#========================= CREATE WEB SERVICE SCHEMA =========================
+def run(inputData):
+    import json
+        
+    prediction = classifier.predict(input_df)
+
+    prediction = "%s %d" % (str(input_df), classifier)
+    return json.dumps(str(prediction))
+
+from azureml.api.schema.dataTypes import DataTypes
+from azureml.api.schema.sampleDefinition import SampleDefinition
+from azureml.api.realtime.services import generate_schema
+
+inputs = {"inputData": SampleDefinition(DataTypes.NUMPY, X_test)}
+print(generate_schema(run_func=run, inputs=inputs, filepath="./outputs/schema.json"))
 
 '''
 #========================= VISUALISING THE RESULTS =========================

@@ -21,10 +21,15 @@ def run(inputData):
     #scaledInputData = sc.transform(inputData)
 
     # predict profit using input data
-    #prediction = model.predict(scaledInputData)
+    #predictionData = model.predict(scaledInputData)
     
-    prediction = model.predict(inputData)
-    return json.dumps(str(prediction))
+    predictionData = model.predict(inputData)
+    predictionArray = []
+    for index in range(len(predictionData)):
+        predictionArray.append(predictionData[index])
+
+    #print("Original Prediction => ", predictionArray)
+    return json.dumps(predictionArray)
 
 if __name__ == '__main__':
     init()

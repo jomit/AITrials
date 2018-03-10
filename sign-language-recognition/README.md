@@ -2,13 +2,15 @@
 
 For this walkthrough we will use an Android Phone/Tablet as the Intelligent Edge device. The goal is to show how we can quickly create image recognition models using [Custom Vision Service](https://www.customvision.ai/) and export it to consume it offline at the Edge.
 
+If you just want to test the app you can download the APK file from [here](https://github.com/jomit/AITrials/blob/master/sign-language-recognition/sign-recognizer.apk?raw=true).
+
 ![Sign Language](https://raw.githubusercontent.com/jomit/AITrials/master/sign-language-recognition/signs.png)
 
 #### Setup
 
 - [Install Android Studio](https://developer.android.com/studio/index.html)
 
-- Download `dataset.zip` file and extract it
+- Download [dataset.zip](https://github.com/jomit/AITrials/blob/master/sign-language-recognition/dataset.zip?raw=true) file and extract it
     - Original dataset can be found [here](https://www.kaggle.com/datamunge/sign-language-mnist/version/1)
 
 #### Create Sign Language Recognition ML Model
@@ -36,9 +38,9 @@ For this walkthrough we will use an Android Phone/Tablet as the Intelligent Edge
 
 #### Create the Android App
 
-- Clone `https://github.com/Azure-Samples/cognitive-services-android-customvision-sample` repo as a template
+- Clone [cognitive-services-android-customvision-sample](https://github.com/Azure-Samples/cognitive-services-android-customvision-sample) repo as a template or you can use the [android-mobileapp](https://github.com/jomit/AITrials/tree/master/sign-language-recognition/android-mobileapp) code from this repo.
 
-- Replace both **model.pb** and **labels.txt** files in `cognitive-services-android-customvision-sample\app\src\main\assets\`
+- Replace both **model.pb** and **labels.txt** files in `app\src\main\assets\`
 
 - Open the project in Android Studio
 

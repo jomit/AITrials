@@ -65,13 +65,13 @@ If you just want to test the app you can download the APK file from [here](https
 
 #### Testing
 
-    ![Test 1 - Y](https://raw.githubusercontent.com/jomit/AITrials/master/sign-language-recognition/images/test1.jpg)
+![Test 1 - Y](https://raw.githubusercontent.com/jomit/AITrials/master/sign-language-recognition/images/test1.jpg)
 
-    ![Test 2 - P](https://raw.githubusercontent.com/jomit/AITrials/master/sign-language-recognition/images/test2.jpg)
+![Test 2 - P](https://raw.githubusercontent.com/jomit/AITrials/master/sign-language-recognition/images/test2.jpg)
 
-    ![Test 3 - W](https://raw.githubusercontent.com/jomit/AITrials/master/sign-language-recognition/images/test3.jpg)
+![Test 3 - W](https://raw.githubusercontent.com/jomit/AITrials/master/sign-language-recognition/images/test3.jpg)
 
-    ![Test 4 - V](https://raw.githubusercontent.com/jomit/AITrials/master/sign-language-recognition/images/test4.jpg)
+![Test 4 - V](https://raw.githubusercontent.com/jomit/AITrials/master/sign-language-recognition/images/test4.jpg)
 
 
 

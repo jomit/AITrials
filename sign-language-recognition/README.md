@@ -4,7 +4,7 @@ For this walkthrough we will use an Android Phone/Tablet as the Intelligent Edge
 
 If you just want to test the app you can download the APK file from [here](https://github.com/jomit/AITrials/blob/master/sign-language-recognition/sign-recognizer.apk?raw=true).
 
-![Sign Language](https://raw.githubusercontent.com/jomit/AITrials/master/sign-language-recognition/signs.png)
+![Sign Language](https://raw.githubusercontent.com/jomit/AITrials/master/sign-language-recognition/images/signs.png)
 
 #### Setup
 
@@ -26,6 +26,9 @@ If you just want to test the app you can download the APK file from [here](https
 - Click the **Train** button at top to start training the model
 
 - Once the training is complete use the **Quick Test** button to upload a new image and test it.
+
+    ![Custom Vision Service](https://raw.githubusercontent.com/jomit/AITrials/master/sign-language-recognition/images/customvisionservice.jpg)
+
 
 #### Export the ML Model
 
@@ -62,4 +65,13 @@ If you just want to test the app you can download the APK file from [here](https
 
 #### Testing
 
-- TODO...
+    ![Test 1 - Y](https://raw.githubusercontent.com/jomit/AITrials/master/sign-language-recognition/images/test1.jpg)
+
+    ![Test 2 - P](https://raw.githubusercontent.com/jomit/AITrials/master/sign-language-recognition/images/test2.jpg)
+
+    ![Test 3 - W](https://raw.githubusercontent.com/jomit/AITrials/master/sign-language-recognition/images/test3.jpg)
+
+    ![Test 4 - V](https://raw.githubusercontent.com/jomit/AITrials/master/sign-language-recognition/images/test4.jpg)
+
+
+

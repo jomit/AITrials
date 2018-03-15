@@ -31,6 +31,8 @@ This repo contains a sample code walkthrough for this technique, which creates a
 
 # Additional Resources
 
+- https://github.com/fboylu/TransferLearningTutorial
+
 ## Use GPU on Windows 10
 
 - Install [CUDA 8.0](https://developer.nvidia.com/cuda-80-ga2-download-archive)

@@ -72,6 +72,7 @@ def getResnetModel():
 	imageInput = Input(shape=(224, 224, 3))
 
 	# get the resnet50 model and weights
+	# https://keras.io/applications/#resnet50
 	model = ResNet50(input_tensor=imageInput, include_top=False,weights='imagenet')
 	#model.summary()
 

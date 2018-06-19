@@ -1,1 +1,0 @@
-### Original source at : https://github.com/Azure-Samples/cognitive-services-android-customvision-sample
